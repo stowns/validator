@@ -46,6 +46,24 @@ var Validations = (function () {
       return true;
     }
   }, {
+    key: "exactLength",
+    value: function exactLength(value, targetValue) {
+      var val = value;
+      if (_lodash2["default"].isNumber(val)) {
+        val = value.toString();
+      }
+
+      if (!_lodash2["default"].isString(val)) {
+        return "Invalid value for length";
+      }
+
+      if (val.length != targetValue) {
+        return "Value must be exactly " + targetValue + " character(s) long";
+      }
+
+      return true;
+    }
+  }, {
     key: "maxLength",
     value: function maxLength(value, targetValue) {
       var val = value;

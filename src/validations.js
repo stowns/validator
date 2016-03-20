@@ -29,6 +29,21 @@ class Validations {
     return true;
   }
 
+  exactLength(value, targetValue) {
+    let val = value;
+    if (_.isNumber(val)) { val = value.toString(); }
+
+    if (!_.isString(val)) {
+      return "Invalid value for length";
+    }
+
+    if (val.length != targetValue) {
+      return "Value must be exactly " + targetValue + " character(s) long";
+    }
+
+    return true;
+  }
+
   maxLength(value, targetValue) {
     let val = value;
     if (_.isNumber(val)) { val = value.toString(); }

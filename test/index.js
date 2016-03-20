@@ -63,6 +63,35 @@ describe('Validator Unit Tests', function () {
 
     });
 
+    describe('exactLength()', function () {
+      var props = {exactLength: 5};
+
+      it('should fail', function () {
+        var stringTest = validator.test("hellothere", props);
+        var numberTest = validator.test(123, props);
+        var invalidTest = validator.test({}, props);
+        var invalidTest2 = validator.test(true, props);
+
+        expect(invalidTest.length).to.equal(1);
+        expect(invalidTest2.length).to.equal(1);
+        expect(stringTest.length).to.equal(1);
+        expect(numberTest.length).to.equal(1);
+        expect(invalidTest[0]).to.equal("Invalid value for length");
+        expect(invalidTest2[0]).to.equal("Invalid value for length");
+        expect(stringTest[0]).to.equal("Value must be exactly 5 character(s) long");
+        expect(numberTest[0]).to.equal("Value must be exactly 5 character(s) long");
+      });
+
+      it('should pass', function () {
+        var stringTest = validator.test("hello", props);
+        var numberTest = validator.test(12345, props);
+
+        expect(stringTest).to.equal(true);
+        expect(numberTest).to.equal(true);
+      });
+
+    });
+
     describe('maxLength()', function () {
       var props = {maxLength: 3};
 
