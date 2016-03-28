@@ -28,6 +28,18 @@ var Validations = (function () {
       return true;
     }
   }, {
+    key: "notEmail",
+    value: function notEmail(value) {
+      var errMessage = "String is an email address";
+
+      var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+      if (re.test(value)) {
+        return errMessage;
+      }
+
+      return true;
+    }
+  }, {
     key: "minLength",
     value: function minLength(value, targetValue) {
       var val = value;
