@@ -149,5 +149,29 @@ describe('Validator Unit Tests', function () {
 
     });
 
+    describe('notEmail()', function () {
+      var props = {notEmail: true};
+
+      it('should fail', function () {
+        var stringTest = validator.test("hey@gmail.com", props);
+
+        expect(stringTest.length).to.equal(1);
+        expect(stringTest[0]).to.equal("String is an email address");
+      });
+
+      it('should pass', function () {
+        var stringTest = validator.test("hello", props);
+        var numberTest = validator.test(12345, props);
+        var objectTest = validator.test({}, props);
+        var boolTest = validator.test(true, props);
+
+        expect(stringTest).to.equal(true);
+        expect(numberTest).to.equal(true);
+        expect(stringTest).to.equal(true);
+        expect(objectTest).to.equal(true);
+        expect(boolTest).to.equal(true);
+      });
+    });
+
 
 }); // end describe Train api
