@@ -1,6 +1,6 @@
 {
   "name": "validator",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "validation utility",
   "main": "dist/index.js",
   "scripts": {
