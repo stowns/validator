@@ -45,6 +45,26 @@ var Validator = (function () {
         return failures;
       }
     }
+  }], [{
+    key: 'test',
+    value: function test(value, props) {
+      var _this2 = this;
+
+      var failures = [];
+
+      _lodash2['default'].forEach(props, function (targetValue, validationMethod) {
+        var result = _this2.validations[validationMethod](value, targetValue);
+        if (result !== true) {
+          failures.push(result);
+        }
+      });
+
+      if (_lodash2['default'].isEmpty(failures)) {
+        return true;
+      } else {
+        return failures;
+      }
+    }
   }]);
 
   return Validator;

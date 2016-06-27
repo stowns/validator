@@ -156,7 +156,7 @@ describe('Validator Unit Tests', function () {
         var stringTest = validator.test("hey@gmail.com", props);
 
         expect(stringTest.length).to.equal(1);
-        expect(stringTest[0]).to.equal("String is an email address");
+        expect(stringTest[0]).to.equal("Should not be an email address");
       });
 
       it('should pass', function () {
