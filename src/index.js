@@ -4,7 +4,6 @@ import Validations from './validations';
 class Validator {
 
   constructor() {
-    this.validations = new Validations();
   }
 
   test(value, props) {
