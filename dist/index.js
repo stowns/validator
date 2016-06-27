@@ -28,12 +28,10 @@ var Validator = (function () {
   _createClass(Validator, [{
     key: 'test',
     value: function test(value, props) {
-      var _this = this;
-
       var failures = [];
 
       _lodash2['default'].forEach(props, function (targetValue, validationMethod) {
-        var result = _this.validations[validationMethod](value, targetValue);
+        var result = _validations2['default'][validationMethod](value, targetValue);
         if (result !== true) {
           failures.push(result);
         }
@@ -48,12 +46,10 @@ var Validator = (function () {
   }], [{
     key: 'test',
     value: function test(value, props) {
-      var _this2 = this;
-
       var failures = [];
 
       _lodash2['default'].forEach(props, function (targetValue, validationMethod) {
-        var result = _this2.validations[validationMethod](value, targetValue);
+        var result = _validations2['default'][validationMethod](value, targetValue);
         if (result !== true) {
           failures.push(result);
         }

@@ -1,16 +1,15 @@
 var expect = require('chai').expect,
     Validator = require('../dist/index');
 
-var validator = new Validator();
 describe('Validator Unit Tests', function () {
-  
+
   describe('required()', function () {
     var props = {required: true};
 
     it('should fail', function () {
-      var emptyTest = validator.test('', props);
-      var nullTest = validator.test(null, props);
-      var objectTest = validator.test({}, props);
+      var emptyTest = Validator.test('', props);
+      var nullTest = Validator.test(null, props);
+      var objectTest = Validator.test({}, props);
 
       expect(emptyTest.length).to.equal(1);
       expect(emptyTest[0]).to.equal("This is required");
@@ -21,10 +20,10 @@ describe('Validator Unit Tests', function () {
     });
 
     it('should pass', function () {
-      var stringTest = validator.test('hello', props);
-      var numberTest = validator.test(1, props);
-      var objectTest = validator.test({hello: 'world'});
-      var booleanTest = validator.test(true, props);
+      var stringTest = Validator.test('hello', props);
+      var numberTest = Validator.test(1, props);
+      var objectTest = Validator.test({hello: 'world'});
+      var booleanTest = Validator.test(true, props);
 
       expect(stringTest).to.equal(true);
       expect(numberTest).to.equal(true);
@@ -38,10 +37,10 @@ describe('Validator Unit Tests', function () {
       var props = {minLength: 6};
 
       it('should fail', function () {
-        var stringTest = validator.test("hello", props);
-        var numberTest = validator.test(12345, props);
-        var invalidTest = validator.test({}, props);
-        var invalidTest2 = validator.test(true, props);
+        var stringTest = Validator.test("hello", props);
+        var numberTest = Validator.test(12345, props);
+        var invalidTest = Validator.test({}, props);
+        var invalidTest2 = Validator.test(true, props);
 
         expect(invalidTest.length).to.equal(1);
         expect(invalidTest2.length).to.equal(1);
@@ -54,8 +53,8 @@ describe('Validator Unit Tests', function () {
       });
 
       it('should pass', function () {
-        var stringTest = validator.test("helloworld", props);
-        var numberTest = validator.test(123456, props);
+        var stringTest = Validator.test("helloworld", props);
+        var numberTest = Validator.test(123456, props);
 
         expect(stringTest).to.equal(true);
         expect(numberTest).to.equal(true);
@@ -67,10 +66,10 @@ describe('Validator Unit Tests', function () {
       var props = {exactLength: 5};
 
       it('should fail', function () {
-        var stringTest = validator.test("hellothere", props);
-        var numberTest = validator.test(123, props);
-        var invalidTest = validator.test({}, props);
-        var invalidTest2 = validator.test(true, props);
+        var stringTest = Validator.test("hellothere", props);
+        var numberTest = Validator.test(123, props);
+        var invalidTest = Validator.test({}, props);
+        var invalidTest2 = Validator.test(true, props);
 
         expect(invalidTest.length).to.equal(1);
         expect(invalidTest2.length).to.equal(1);
@@ -83,8 +82,8 @@ describe('Validator Unit Tests', function () {
       });
 
       it('should pass', function () {
-        var stringTest = validator.test("hello", props);
-        var numberTest = validator.test(12345, props);
+        var stringTest = Validator.test("hello", props);
+        var numberTest = Validator.test(12345, props);
 
         expect(stringTest).to.equal(true);
         expect(numberTest).to.equal(true);
@@ -96,10 +95,10 @@ describe('Validator Unit Tests', function () {
       var props = {maxLength: 3};
 
       it('should fail', function () {
-        var stringTest = validator.test("hello", props);
-        var numberTest = validator.test(12345, props);
-        var invalidTest = validator.test({}, props);
-        var invalidTest2 = validator.test(true, props);
+        var stringTest = Validator.test("hello", props);
+        var numberTest = Validator.test(12345, props);
+        var invalidTest = Validator.test({}, props);
+        var invalidTest2 = Validator.test(true, props);
 
         expect(invalidTest.length).to.equal(1);
         expect(invalidTest2.length).to.equal(1);
@@ -112,8 +111,8 @@ describe('Validator Unit Tests', function () {
       });
 
       it('should pass', function () {
-        var stringTest = validator.test("hey", props);
-        var numberTest = validator.test(123, props);
+        var stringTest = Validator.test("hey", props);
+        var numberTest = Validator.test(123, props);
 
         expect(stringTest).to.equal(true);
         expect(numberTest).to.equal(true);
@@ -125,10 +124,10 @@ describe('Validator Unit Tests', function () {
       var props = {email: true};
 
       it('should fail', function () {
-        var stringTest = validator.test("hello", props);
-        var numberTest = validator.test(12345, props);
-        var objectTest = validator.test({}, props);
-        var boolTest = validator.test(true, props);
+        var stringTest = Validator.test("hello", props);
+        var numberTest = Validator.test(12345, props);
+        var objectTest = Validator.test({}, props);
+        var boolTest = Validator.test(true, props);
 
         expect(stringTest.length).to.equal(1);
         expect(numberTest.length).to.equal(1);
@@ -142,7 +141,7 @@ describe('Validator Unit Tests', function () {
       });
 
       it('should pass', function () {
-        var stringTest = validator.test("hey@gmail.com", props);
+        var stringTest = Validator.test("hey@gmail.com", props);
 
         expect(stringTest).to.equal(true);
       });
@@ -153,17 +152,17 @@ describe('Validator Unit Tests', function () {
       var props = {notEmail: true};
 
       it('should fail', function () {
-        var stringTest = validator.test("hey@gmail.com", props);
+        var stringTest = Validator.test("hey@gmail.com", props);
 
         expect(stringTest.length).to.equal(1);
         expect(stringTest[0]).to.equal("Should not be an email address");
       });
 
       it('should pass', function () {
-        var stringTest = validator.test("hello", props);
-        var numberTest = validator.test(12345, props);
-        var objectTest = validator.test({}, props);
-        var boolTest = validator.test(true, props);
+        var stringTest = Validator.test("hello", props);
+        var numberTest = Validator.test(12345, props);
+        var objectTest = Validator.test({}, props);
+        var boolTest = Validator.test(true, props);
 
         expect(stringTest).to.equal(true);
         expect(numberTest).to.equal(true);

@@ -19,7 +19,7 @@ var Validations = (function () {
     _classCallCheck(this, Validations);
   }
 
-  _createClass(Validations, [{
+  _createClass(Validations, null, [{
     key: "email",
     value: function email(value) {
       var errMessage = "Not a valid email address";

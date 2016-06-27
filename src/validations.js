@@ -5,25 +5,25 @@ class Validations {
   constructor() {
   }
 
-  email(value) {
+  static email(value) {
     let errMessage = "Not a valid email address";
 
     let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
     if (!re.test(value)) { return errMessage; }
-    
+
     return true;
   }
 
-  notEmail(value) {
+  static notEmail(value) {
     let errMessage = "Should not be an email address";
 
     let re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
     if (re.test(value)) { return errMessage; }
-    
+
     return true;
   }
 
-  minLength(value, targetValue) {
+  static minLength(value, targetValue) {
     let val = value;
     if (_.isNumber(val)) { val = value.toString(); }
 
@@ -38,7 +38,7 @@ class Validations {
     return true;
   }
 
-  exactLength(value, targetValue) {
+  static exactLength(value, targetValue) {
     let val = value;
     if (_.isNumber(val)) { val = value.toString(); }
 
@@ -53,7 +53,7 @@ class Validations {
     return true;
   }
 
-  maxLength(value, targetValue) {
+  static maxLength(value, targetValue) {
     let val = value;
     if (_.isNumber(val)) { val = value.toString(); }
 
@@ -68,11 +68,11 @@ class Validations {
     return true;
   }
 
-  lengthRange(value, targetValue) {
+  static lengthRange(value, targetValue) {
 
   }
 
-  required(value) {
+  static required(value) {
     let errMessage = "This is required";
 
     if (_.isNumber(value)) { return true; }

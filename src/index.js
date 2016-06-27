@@ -11,7 +11,7 @@ class Validator {
     let failures = [];
 
     _.forEach(props, (targetValue, validationMethod) => {
-      let result = this.validations[validationMethod](value, targetValue);
+      let result = Validations[validationMethod](value, targetValue);
       if (result !== true) {
         failures.push(result);
       }
@@ -29,7 +29,7 @@ class Validator {
     let failures = [];
 
     _.forEach(props, (targetValue, validationMethod) => {
-      let result = this.validations[validationMethod](value, targetValue);
+      let result = Validations[validationMethod](value, targetValue);
       if (result !== true) {
         failures.push(result);
       }
