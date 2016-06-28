@@ -6,10 +6,10 @@ class Validator {
   constructor() {
   }
 
-  test(value, props) {
+  test(value, validations) {
     let failures = [];
 
-    _.forEach(props, (targetValue, validationMethod) => {
+    _.forEach(validations, (targetValue, validationMethod) => {
       let result = Validations[validationMethod](value, targetValue);
       if (result !== true) {
         failures.push(result);
@@ -24,10 +24,22 @@ class Validator {
     }
   }
 
-  static test(value, props) {
+  testBatch(payload, schema) {
+    let failures = {};
+    _.forEach(schema, function (validations, key) {
+      let result = Validator.test(payload[key], validations);
+      if (result !== true) {
+        failures[key] = result;
+      }
+    });
+
+    return _.isEmpty(failures) ? true : failures
+  }
+
+  static test(value, validations) {
     let failures = [];
 
-    _.forEach(props, (targetValue, validationMethod) => {
+    _.forEach(validations, (targetValue, validationMethod) => {
       let result = Validations[validationMethod](value, targetValue);
       if (result !== true) {
         failures.push(result);
@@ -40,6 +52,18 @@ class Validator {
     else {
       return failures;
     }
+  }
+
+  static testBatch(payload, schema) {
+    let failures = {};
+    _.forEach(schema, function (validations, key) {
+      let result = Validator.test(payload[key], validations);
+      if (result !== true) {
+        failures[key] = result;
+      }
+    });
+
+    return _.isEmpty(failures) ? true : failures
   }
 }
 

@@ -21,16 +21,14 @@ var _validations2 = _interopRequireDefault(_validations);
 var Validator = (function () {
   function Validator() {
     _classCallCheck(this, Validator);
-
-    this.validations = new _validations2['default']();
   }
 
   _createClass(Validator, [{
     key: 'test',
-    value: function test(value, props) {
+    value: function test(value, validations) {
       var failures = [];
 
-      _lodash2['default'].forEach(props, function (targetValue, validationMethod) {
+      _lodash2['default'].forEach(validations, function (targetValue, validationMethod) {
         var result = _validations2['default'][validationMethod](value, targetValue);
         if (result !== true) {
           failures.push(result);
@@ -43,12 +41,25 @@ var Validator = (function () {
         return failures;
       }
     }
+  }, {
+    key: 'testBatch',
+    value: function testBatch(payload, schema) {
+      var failures = {};
+      _lodash2['default'].forEach(schema, function (validations, key) {
+        var result = Validator.test(payload[key], validations);
+        if (result !== true) {
+          failures[key] = result;
+        }
+      });
+
+      return _lodash2['default'].isEmpty(failures) ? true : failures;
+    }
   }], [{
     key: 'test',
-    value: function test(value, props) {
+    value: function test(value, validations) {
       var failures = [];
 
-      _lodash2['default'].forEach(props, function (targetValue, validationMethod) {
+      _lodash2['default'].forEach(validations, function (targetValue, validationMethod) {
         var result = _validations2['default'][validationMethod](value, targetValue);
         if (result !== true) {
           failures.push(result);
@@ -60,6 +71,19 @@ var Validator = (function () {
       } else {
         return failures;
       }
+    }
+  }, {
+    key: 'testBatch',
+    value: function testBatch(payload, schema) {
+      var failures = {};
+      _lodash2['default'].forEach(schema, function (validations, key) {
+        var result = Validator.test(payload[key], validations);
+        if (result !== true) {
+          failures[key] = result;
+        }
+      });
+
+      return _lodash2['default'].isEmpty(failures) ? true : failures;
     }
   }]);
 

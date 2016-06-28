@@ -172,5 +172,27 @@ describe('Validator Unit Tests', function () {
       });
     });
 
+    describe('testBatch()', function () {
+      var props = {
+        key1: {notEmail: true},
+        key2: {email: true, required: true}
+      };
+
+      it('should fail', function () {
+        var failures = Validator.testBatch({key1: "not an email"}, props);
+
+        expect(failures).to.be.instanceof(Object);
+        expect(failures.key2.length).to.equal(2);
+        expect(failures.key2[0]).to.equal("Not a valid email address");
+        expect(failures.key2[1]).to.equal("This is required");
+      });
+
+      it('should pass', function () {
+        var failures = Validator.testBatch({key1: "not an email", key2: "hey@hey.com"}, props);
+
+        expect(failures).to.equal(true);
+      });
+    });
+
 
 }); // end describe Train api
