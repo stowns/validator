@@ -11,7 +11,7 @@
     "url": "git@github.com:stowns/validator.git"
   },
   "keywords": [
-    "cookies"
+    "validation", "validator"
   ],
   "author": "Simon Townsend",
   "license": "MIT",
