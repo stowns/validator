@@ -1,5 +1,5 @@
 {
-  "name": "validator",
+  "name": "validator_",
   "version": "1.3.0",
   "description": "validation utility",
   "main": "dist/index.js",
@@ -11,7 +11,7 @@
     "url": "git@github.com:stowns/validator.git"
   },
   "keywords": [
-    "validation", "validator"
+    "validation", "validator", "simple"
   ],
   "author": "Simon Townsend",
   "license": "MIT",
